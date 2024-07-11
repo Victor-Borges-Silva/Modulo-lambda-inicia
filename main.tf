@@ -1,11 +1,11 @@
 provider "aws" {
-  region = "us-west-1"
+  region = "sa-east-1"
 }
 
-resource "aws_lambda_function" "inicia" {
-  filename         = "./lambda_function.zip"
-  function_name    = "inicia"
-  role             = "arn:aws:iam::087381958847:role/Funcao_de_agendamento"
+resource "aws_lambda_function" "IniciaEC2" {
+  filename         = "${path.module}/lambda_function.zip"
+  function_name    = "IniciaEC2"
+  role             = "arn:aws:iam::087381958847:role/test_Inicia_Desliga_EC2"
   handler          = "lambda_function.lambda_handler"
   runtime          = "python3.8"
   memory_size      = 128
@@ -13,7 +13,9 @@ resource "aws_lambda_function" "inicia" {
   source_code_hash = "B6CuJjUC9NUq3LHqypP6nhKdMZNRJThp4UYykmoLq9A="
 
   environment {
-    variables = {}
+    variables = {
+      instancia_id = jsonencode(var.instancia_id)
+    }
   }
 
   ephemeral_storage {
@@ -30,38 +32,6 @@ resource "aws_lambda_function" "inicia" {
   }
 
   tags = {
-    Name = var.funcao_inicia
-  }
-}
-
-resource "aws_lambda_function" "desliga" {
-  filename         = "./lambda_function_stop.zip"
-  function_name    = "desliga"
-  role             = "arn:aws:iam::087381958847:role/Funcao_de_agendamento"
-  handler          = "lambda_function.lambda_handler"
-  runtime          = "python3.8"
-  memory_size      = 128
-  timeout          = 3
-  source_code_hash = "B6CuJjUC9NUq3LHqypP6nhKdMZNRJThp4UYykmoLq9A="
-
-  environment {
-    variables = {}
-  }
-
-  ephemeral_storage {
-    size = 512
-  }
-
-  tracing_config {
-    mode = "PassThrough"
-  }
-
-  logging_config {
-    log_format = "Text"
-    log_group  = "/aws/lambda/inicia"
-  }
-
-  tags = {
-    Name = var.funcao_desliga
+    Name = var.nome_funcao_inicia
   }
 }

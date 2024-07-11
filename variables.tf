@@ -1,11 +1,11 @@
-variable "funcao_inicia" {
+variable "nome_funcao_inicia" {
   type        = string
-  default     = "inicia"
+  default     = "Default_Variabletf"
   description = "Nome da função lambda"
 }
 
-variable "funcao_desliga" {
-  type        = string
-  default     = "desliga"
-  description = "Nome da função lambda"
+variable "instancia_id" {
+  type        = list(string)
+  default     = ["Default_Variabletf"]
+  description = "lista de instancia a ser iniciada"
 }

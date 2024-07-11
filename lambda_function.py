@@ -1,6 +1,16 @@
 import boto3
-region = 'us-west-1'
-instances = ['i-0fd5ae5df8da7d9aa']
+import os
+import json
+
+region = 'sa-east-1'
+instances = json.loads(os.environ['instancia_id'])
 ec2 = boto3.client('ec2', region_name=region)
-def lambda_handler(event, context): ec2.start_instances(InstanceIds=instances)
-print('started your instances: ' + str(instances))
+
+def lambda_handler(event, context): 
+    ec2.start_instances(InstanceIds=instances)
+    print('started your instances: ' + str(instances))
+
+
+
+
+
