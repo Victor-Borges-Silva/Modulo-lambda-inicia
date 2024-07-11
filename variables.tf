@@ -9,3 +9,9 @@ variable "instancia_id" {
   default     = ["Default_Variabletf"]
   description = "lista de instancia a ser iniciada"
 }
+
+variable "role" {
+  type        = string
+  default     = "Default_Variabletf"
+  description = "ARN da função IAM"
+}
