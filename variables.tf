@@ -11,11 +11,7 @@ variable "instancia_id" {
 }
 
 variable "role" {
-  type = string
-<<<<<<< HEAD
-  #default      = "Default_Variabletf"
-=======
-  #default     = "Default_Variabletf"
->>>>>>> b56645d675c38b0ce7711c40f28b58f53d3a84d2
+  type        = string
+  default     = "Default_Variabletf"
   description = "ARN da função IAM"
 }
