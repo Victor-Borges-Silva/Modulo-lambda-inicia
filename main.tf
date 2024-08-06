@@ -20,7 +20,7 @@ resource "aws_lambda_function" "IniciaEC2" {
   }
 
   tracing_config {
-    mode = "PassThrough"
+    mode = "Active"
   }
 
   logging_config {
