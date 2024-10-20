@@ -4,8 +4,8 @@ resource "aws_lambda_function" "IniciaEC2" {
   role             = var.role
   handler          = "lambda_function.lambda_handler"
   runtime          = "python3.8"
-  memory_size      = 128
-  timeout          = 3
+  memory_size      = var.tamanho_memoria
+  timeout          = var.timeout
   source_code_hash = "B6CuJjUC9NUq3LHqypP6nhKdMZNRJThp4UYykmoLq9A="
 
   environment {
@@ -15,11 +15,11 @@ resource "aws_lambda_function" "IniciaEC2" {
   }
 
   ephemeral_storage {
-    size = 512
+    size = var.armazenamento_temporario
   }
 
   tracing_config {
-    mode = "Active"
+    mode = var.rastreio_log
   }
 
   logging_config {

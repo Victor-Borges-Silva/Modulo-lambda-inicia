@@ -15,3 +15,23 @@ variable "role" {
   default     = "Default_Variabletf"
   description = "ARN da função IAM"
 }
+
+variable "tamanho_memoria" {
+  type        = number
+  description = "Tamanho max para armezenar a função"
+}
+
+variable "timeout" {
+  type        = number
+  description = "Tempo max de execução da função"
+}
+
+variable "armazenamento_temporario" {
+  type        = number
+  description = "Espaço do disco temporario de armazenamento"
+}
+
+variable "rastreio_log" {
+  type        = string
+  description = "Ativar ou Desativar rastreio"
+}
